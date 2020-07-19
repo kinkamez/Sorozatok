@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.16.1//firebase-database.js"></script>
+
+  <!-- <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script> -->
+
+  <link rel="stylesheet" href="style.css">
+  <!-- conzolos cucc -->
+  <!-- <script>
+    require('nw.gui').Window.get().showDevTools();
+  </script> -->
+
+
+
+  <title></title>
+</head>
+
+<body>
+
+
+  <nav>
+
+    <ul class="topnav" id="myTopnav">
+      <li><a href="#" onclick="ujelem('ujel')">Új</a></li>
+      <li><a href="#" id="szepislesz" class="btn active" onclick="show('1')">Sorozatok</a></li>
+      <li><a href="#" class="btn" onclick="show('2')">Rejtettek</a></li>
+      <li><a href="#" onclick="ujelem('settings')">Beállítások</a></li>
+      <li><a href="#" class="btn" onclick="">Filmek</a></li>
+
+      <li><a href="#" class="dropbtn" onclick="myF()"><img src="img/cloud.png" height="14px" onclick="myF()"></a>
+        <div class="dropdown-content" id="myDropdown">
+          <a href="#" onclick="jsonToFirestore()">Mentés</a>
+          <a href="#" onclick="gettelo()">Visszaállítás</a>
+
+        </div>
+      </li>
+    </ul>
+
+  </nav>
+
+
+  <div id="settings" class="ezvana">
+    <!-- <div id="settings" class="ezvana" style=" display:none "> -->
+
+
+    <div>
+      <label class="switch" for="beallitas1">
+        <input type="checkbox" id="beallitas1" store="checkbox1">
+        <div class="slider round"></div>
+      </label>
+      <label for="beallitas1" class="tavos">Megnyitás </label>
+    </div>
+    <div>
+      <label class="switch" for="beallitas2">
+        <input type="checkbox" id="beallitas2" store="checkbox2">
+        <div class="slider round"></div>
+      </label>
+      <label for="beallitas2" class="tavos">Netmozi </label>
+    </div>
+    <div>
+
+      <label class="switch" for="beallitas4">
+        <input type="checkbox" id="beallitas4" store="checkbox4">
+        <div class="slider round"></div>
+      </label>
+      <label for="beallitas4" class="tavos">tvdb </label>
+
+    </div>
+    <div>
+      <label class="switch" for="beallitas5">
+        <input type="checkbox" id="beallitas5" store="checkbox5">
+        <div class="slider round"></div>
+      </label>
+      <label for="beallitas5" class="tavos">sorozatbarát </label>
+    </div>
+
+    <!-- <input type="checkbox" id="beallitas3" value="Bike" checked>
+      <label for="beallitas3">Sorozatbarát integráció</label> -->
+  </div>
+  <div class="sticky" style="height:15px;">
+    <div class="uzenetes" id="fontosuzi"></div>
+  </div>
+
+  <section>
+    <div id="ujel" style=" display:none ">
+
+
+      <fieldset>
+        <legend>Új sorozat hozzáadása:</legend>
+        <input type="text" id="ujname" placeholder="Név:" required style="width:50.5%">
+        <input type="number" id="ujevad" placeholder="Évad:" required style="width:10.5%" value="1">
+        <input type="number" id="ujresz" placeholder="Rész:" required style="width:10.5%" value="0">
+        <input type="number" id="ujreszevad" placeholder="Max:" required style="width:10.5%">
+
+        <!-- <input id="open-project" type="file" webkitdirectory directory /> -->
+        <input type="number" id="ujmas" placeholder="thetvdb ID:" autofocus style="width:30%">
+        <!-- <select class="select-text" id="ujarhive">
+
+          <option value="1">Megjelenítés</option>
+          <option value="2">Elrejtés</option>
+
+        </select> -->
+        <label for="beallitas7" style="margin-right: 15px;"> Megjelenítés:</label>
+        <label class="switch" for="beallitas7">
+          <input type="checkbox" id="beallitas7" checked>
+          <div class="slider round"></div>
+        </label>
+
+
+        <input type="text" id="ujhely" placeholder="Útvoval:" size="50" style="width:98%">
+
+        <input type="file" id="FileUpload" onchange="selectFolder(event)" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
+        <br><br>
+        <div id="loading">
+
+        </div>
+        <input type="button" value="Mentés" class="button5" style="float: right" onclick="newe()">
+        <input type="button" id="torlogomb" value="Törlés" class="button44" style="float: right" onclick="urit();ujelem('ujel');">
+        <input type="hidden" id="hiddeninput" name="custId" value="">
+      </fieldset>
+
+
+
+    </div>
+
+  </section>
+  <section>
+    <div class="fodoboz" id="sorozatok">
+
+    </div>
+  </section>
+
+
+  <!-- <button type="button" class="button5" name="button" onclick="nyit('/run/media/kinka/Data/sorozatok/Breaking.Bad.COMPLETE.BDRIP.x264.Hun.Eng-Krissz/Breaking.Bad.S02.BDRIP.x264.Hun.Eng-Krissz/Breaking.Bad.S02E11.BDRIP.x264.Hun.Eng-Krissz.mkv')">GOMB shell</button> -->
+
+  <!-- <button type="button" name="button" class="button5"onclick="nyit('/home/kinka/Pictures/Screenshot_20191110_100855.png')">GOMB nyit</button> -->
+  <!-- <button type="button" name="button" class="button5"onclick="megNez(1,2,'uas',12,'nev')">GOMB newe</button> -->
+
+</body>
+
+<script type="text/javascript" src="tvdb.js"></script>
+<script type="text/javascript" src="img.js"></script>
+<script type="text/javascript" src="jsonstore.js"></script>
+<script type="text/javascript" src="jiimp.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<!-- <script type="text/javascript" src="sori.js"></script> -->
+
+
+<script>
+  // Add active class to the current button (highlight it)
+  var header = document.getElementById("myTopnav");
+  var btns = header.getElementsByClassName("btn");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function() {
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+    });
+  }
+</script>
+
+</html>

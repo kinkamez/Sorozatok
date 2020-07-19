@@ -1,0 +1,373 @@
+{
+  "data": [
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 16,
+      "Name": "Walking Dead",
+      "Other": 153021,
+      "Path": "/run/media/kinka/Data/sorozatok/walking",
+      "Season": 8
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 8,
+      "Name": "Witcher",
+      "Other": 362696,
+      "Path": "https://netmozi.com/details/21182/vajak/s1/e0",
+      "Season": 2
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 10,
+      "Name": "You",
+      "Other": 336924,
+      "Path": "https://www.sorozatbarat.online/video/series/7031/YOU_online_sorozat/01_evad",
+      "Season": 3
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 23,
+      "Name": "Vámpírnaplók",
+      "Other": 95491,
+      "Path": "",
+      "Season": 6
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 24,
+      "Name": "Képmás",
+      "Other": 337302,
+      "Path": "Nincs megadott útvonal!",
+      "Season": 1
+    },
+    {
+      "Archive": 1,
+      "Episode": 0,
+      "Episodeyear": 18,
+      "Name": "Dr Murphy",
+      "Other": 328634,
+      "Path": "/run/media/kinka/Data/sorozatok/drmurphy",
+      "Season": 3
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 8,
+      "Name": "Az úr sötét anyagai",
+      "Other": 360295,
+      "Path": "https://netmozi.com/details/20655/az_ur_sotet_anyagai/s1/e1",
+      "Season": 2
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 10,
+      "Name": "Continuum",
+      "Other": 258171,
+      "Path": "/run/media/kinka/Data/sorozatok/continuum",
+      "Season": 2
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 0,
+      "Name": "A mandalori",
+      "Other": 361753,
+      "Path": "",
+      "Season": 2
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 4,
+      "Name": "Castlevania",
+      "Other": 329065,
+      "Path": "",
+      "Season": 1
+    },
+    {
+      "Archive": 1,
+      "Episode": 0,
+      "Episodeyear": 8,
+      "Name": "Stranger Things",
+      "Other": 305288,
+      "Path": "/run/media/kinka/Data/sorozatok/stranger",
+      "Season": 3
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 12,
+      "Name": "Into the Dark",
+      "Other": 347115,
+      "Path": "",
+      "Season": 1
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 3,
+      "Name": "Fekete tükör",
+      "Other": 253463,
+      "Path": "",
+      "Season": 1
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 10,
+      "Name": "Sötét árvák",
+      "Other": 260315,
+      "Path": "",
+      "Season": 1
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 10,
+      "Name": "A Térség",
+      "Other": 280619,
+      "Path": "",
+      "Season": 1
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 10,
+      "Name": "Trónok harca",
+      "Other": 121361,
+      "Path": "https://netmozi.com/details/144/tronok_harca/s8/e100",
+      "Season": 9
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 24,
+      "Name": "Mentalista",
+      "Other": 82459,
+      "Path": "https://netmozi.com/details/7336/a_mentalista/s7/e12",
+      "Season": 8
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 22,
+      "Name": "Marvels Agents of S.H.I.E.L.D",
+      "Other": 263365,
+      "Path": "/run/media/kinka/Data/sorozatok/shield",
+      "Season": 4
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 10,
+      "Name": "Altered Carbon",
+      "Other": 332331,
+      "Path": "",
+      "Season": 1
+    },
+    {
+      "Archive": 2,
+      "Episode": 0,
+      "Episodeyear": 14,
+      "Name": "A rezidens",
+      "Other": 328569,
+      "Path": "",
+      "Season": 1
+    },
+    {
+      "Name": "Smallville",
+      "Archive": 2,
+      "Season": 11,
+      "Episode": 0,
+      "Episodeyear": 21,
+      "Path": "/run/media/kinka/Data/sorozatok/smallville",
+      "Other": 72218
+    },
+    {
+      "Name": "The 100",
+      "Archive": 2,
+      "Season": 1,
+      "Episode": 8,
+      "Episodeyear": 13,
+      "Path": "https://www.sorozatbarat.online/video/series/1437/A_Visszaterok_online_sorozat/01_evad",
+      "Other": 268592
+    },
+    {
+      "Name": "BoJack Horseman",
+      "Archive": 2,
+      "Season": 1,
+      "Episode": 2,
+      "Episodeyear": 12,
+      "Path": "https://www.sorozatbarat.online/video/series/2675/BoJack_Horseman_online_sorozat/06_evad",
+      "Other": 282254
+    },
+    {
+      "Name": "Rejtjelek",
+      "Archive": 2,
+      "Season": 1,
+      "Episode": 0,
+      "Episodeyear": 22,
+      "Path": "/run/media/kinka/Data/sorozatok/blindspot",
+      "Other": 295647
+    },
+    {
+      "Name": "Amerikai Horror Story",
+      "Archive": 2,
+      "Season": 1,
+      "Episode": 0,
+      "Episodeyear": 12,
+      "Path": "",
+      "Other": 250487
+    },
+    {
+      "Name": "A rejtély",
+      "Archive": 2,
+      "Season": 6,
+      "Episode": 0,
+      "Episodeyear": 13,
+      "Path": "/run/media/kinka/Data/sorozatok/Fringe.COMPLETE.REPACK.BDRip.x264.Hun.Eng-MaMMuT",
+      "Other": 82066
+    },
+    {
+      "Name": "Doktor House",
+      "Archive": 1,
+      "Season": 1,
+      "Episode": 8,
+      "Episodeyear": 22,
+      "Path": "/run/media/kinka/Data/sorozatok/House",
+      "Other": 73255
+    },
+    {
+      "Name": "Marianne",
+      "Archive": 2,
+      "Season": 2,
+      "Episode": 0,
+      "Episodeyear": 8,
+      "Path": "/run/media/kinka/Data/sorozatok/Marianne.S01.WEB-DLRip.x264.HUN-SFY",
+      "Other": 365442
+    },
+    {
+      "Name": "Vikingek",
+      "Archive": 2,
+      "Season": 1,
+      "Episode": 0,
+      "Episodeyear": 9,
+      "Path": "https://netmozi.com/details/2910/vikingek/s6/e4",
+      "Other": 260449
+    },
+    {
+      "Name": "Az elveszett erkélyék fosztogatói",
+      "Archive": 2,
+      "Season": 2,
+      "Episode": 8,
+      "Episodeyear": 22,
+      "Path": "https://www.sorozatbarat.online/video/series/584/Az_elveszett_ereklyek_fosztogatoi_online_sorozat/02_evad",
+      "Other": 73810
+    },
+    {
+      "Name": "Lost in space",
+      "Archive": 2,
+      "Season": 1,
+      "Episode": 0,
+      "Episodeyear": 10,
+      "Path": "https://netmozi.com/details/8405/lost_in_space_elveszve_az_urben/s1/e1",
+      "Other": 343253
+    },
+    {
+      "Name": "Lost",
+      "Archive": 1,
+      "Season": 2,
+      "Episode": 9,
+      "Episodeyear": 24,
+      "Path": "/run/media/kinka/Data/sorozatok/Lost.Complete.BDRip.x264-FGT",
+      "Other": 73739
+    },
+    {
+      "Name": "Ragnarök",
+      "Archive": 1,
+      "Season": 1,
+      "Episode": 0,
+      "Episodeyear": 6,
+      "Path": "https://netmozi.com/sorozatok/22248/ragnarok/s1/e6",
+      "Other": 379873
+    },
+    {
+      "Name": "Carter ügynök",
+      "Archive": 2,
+      "Season": 3,
+      "Episode": 1,
+      "Episodeyear": 8,
+      "Path": "/run/media/kinka/Data/filmek/Marvel Univerzum/Agent Carter",
+      "Other": 281485
+    },
+    {
+      "Name": "Salem",
+      "Archive": 1,
+      "Season": 1,
+      "Episode": 0,
+      "Episodeyear": 13,
+      "Path": "/run/media/kinka/Data/sorozatok/Salem.S01-S03.DVDRip.X264-SCENE",
+      "Other": 274897
+    },
+    {
+      "Name": "Odaát",
+      "Archive": 1,
+      "Season": 9,
+      "Episode": 18,
+      "Episodeyear": 23,
+      "Path": "/run/media/kinka/Data/sorozatok/supernatural",
+      "Other": 78901
+    },
+    {
+      "Name": "Hősök",
+      "Archive": 1,
+      "Season": 1,
+      "Episode": 21,
+      "Episodeyear": 23,
+      "Path": "/run/media/kinka/Data/sorozatok/Heroes.COMPLETE.DVDRip.XviD-TvT",
+      "Other": 79501
+    },
+    {
+      "Name": "A kívülálló",
+      "Archive": 2,
+      "Season": 1,
+      "Episode": 0,
+      "Episodeyear": 10,
+      "Path": "https://netmozi.com/sorozatok/21819/a_kivulallo/s1/e8",
+      "Other": 365480
+    },
+    {
+      "Name": "X-Akták",
+      "Archive": 1,
+      "Season": 1,
+      "Episode": 0,
+      "Episodeyear": 24,
+      "Path": "",
+      "Other": 77398
+    },
+    {
+      "Name": "Sötétség",
+      "Archive": 2,
+      "Season": 1,
+      "Episode": 0,
+      "Episodeyear": 10,
+      "Path": "",
+      "Other": 334824
+    },
+    {
+      "Name": "Breaking Bad",
+      "Archive": 1,
+      "Season": 4,
+      "Episode": 0,
+      "Episodeyear": 13,
+      "Path": "/run/media/kinka/Data/sorozatok/Breaking.Bad.COMPLETE.BDRIP.x264.Hun.Eng-Krissz",
+      "Other": 81189
+    }
+  ]
+}

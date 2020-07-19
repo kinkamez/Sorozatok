@@ -1,0 +1,36 @@
+{
+    "main": "source/index.html",
+    "name": "Sorozatok",
+    "description": "multiplatformos sorozatresz koveto",
+    "version": "1.1.0",
+    "keywords": [
+        "demo",
+        "node-webkit"
+    ],
+    "window": {
+        "title": "Sorozatok",
+        "icon": "source/img/ferret.png",
+        "frame": true,
+        "width": 540,
+        "height": 425,
+        "position": "mouse",
+        "min_width": 230,
+        "min_height": 190,
+        "show": true
+    },
+    "developer": {
+        "showDevToolsOnStartup": true
+    },
+    "dependencies": {
+        "firebase": "^7.16.0",
+        "firebase-admin": "^8.13.0",
+        "firestore-export-import": "^0.6.1",
+        "image-downloader": "^3.5.0",
+        "is-url": "^1.2.4",
+        "jimp": "^0.9.3",
+        "jsonstore.io": "^1.1.0",
+        "open": "^7.0.0",
+        "readdirp": "^3.2.0",
+        "tvdb.js": "^1.0.7"
+    }
+}
