@@ -170,7 +170,7 @@ async function show(melyiket) {
     }
     if (document.getElementById("beallitas4").checked == true) {
       shower(melyiket);
-       // tvdba(tvdbkod, tvdbreevad, tvdbreresz, ids, nev)
+      // tvdba(tvdbkod, tvdbreevad, tvdbreresz, ids, nev)
     }
   });
 
@@ -251,7 +251,9 @@ async function newe() {
     "Episode": parseInt(document.getElementById("ujresz").value, 10),
     "Episodeyear": parseInt(document.getElementById("ujreszevad").value, 10),
     "Path": {
-      [computerName]: document.getElementById("ujhely").value
+      // [computerName]: document.getElementById("ujhely").value
+      "kinka-pc": "",
+      "Lenovo": ""
     },
     "Other": parseInt(document.getElementById("ujmas").value, 10)
   };
@@ -266,8 +268,14 @@ async function newe() {
       document.getElementById("hiddeninput").value = "";
     }
 
-    firebase.database().ref('data/' + newPostKey).set(beirandoobj); //firebaseba
+    firebase.database().ref('data/' + newPostKey).update(beirandoobj); //firebaseba
+    firebase.database().ref('data/' + newPostKey + '/Path/').transaction(function(post) {
+      if (post) {
+        post[computerName] = document.getElementById("ujhely").value;
+      }
 
+      return post;
+    });
   } catch (e) {
     uzenetek(e);
   } finally {
@@ -429,7 +437,8 @@ function egyszerremindet() {
       "Name": obj.data[i].Name,
       "Other": obj.data[i].Other,
       "Path": {
-        [computerName]: obj.data[i].Path
+        "kinka-pc":"",
+        "Lenovo": ""
       },
       "Season": obj.data[i].Season
     }
@@ -438,4 +447,4 @@ function egyszerremindet() {
   } //for ege
 } //egyszerremindet()vege
 
-// egyszerremindet();
+ // egyszerremindet();
