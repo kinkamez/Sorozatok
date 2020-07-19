@@ -170,7 +170,7 @@ async function show(melyiket) {
     }
     if (document.getElementById("beallitas4").checked == true) {
       shower(melyiket);
-       tvdba(tvdbkod, tvdbreevad, tvdbreresz, ids, nev)
+       // tvdba(tvdbkod, tvdbreevad, tvdbreresz, ids, nev)
     }
   });
 
