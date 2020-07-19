@@ -251,9 +251,13 @@ async function newe() {
     "Episode": parseInt(document.getElementById("ujresz").value, 10),
     "Episodeyear": parseInt(document.getElementById("ujreszevad").value, 10),
     "Path": {
-      // [computerName]: document.getElementById("ujhely").value
-      "kinka-pc": "",
-      "Lenovo": ""
+      [computerName]: {
+        "Ut" : document.getElementById("ujhely").value
+      }
+
+    //   // [computerName]: document.getElementById("ujhely").value
+    //   // "kinka-pc": "",
+    //   // "Lenovo": ""
     },
     "Other": parseInt(document.getElementById("ujmas").value, 10)
   };
@@ -269,13 +273,18 @@ async function newe() {
     }
 
     firebase.database().ref('data/' + newPostKey).update(beirandoobj); //firebaseba
-    firebase.database().ref('data/' + newPostKey + '/Path/').transaction(function(post) {
-      if (post) {
-        post[computerName] = document.getElementById("ujhely").value;
-      }
-
-      return post;
-    });
+    // let faszagyerek = { [computerName] : document.getElementById("ujhely").value }
+    // firebase.database().ref('data/' + newPostKey + '/Path/').update(faszagyerek); //firebaseba
+    // firebase.database().ref('data/' + newPostKey + '/Path/').transaction(function(post) {
+    //   if (post) {
+    //     post[computerName] = document.getElementById("ujhely").value;
+    //   }
+    //   else {
+    //       post[computerName] = document.getElementById("ujhely").value;
+    //   }
+    //
+    //   return post;
+    // });
   } catch (e) {
     uzenetek(e);
   } finally {
@@ -437,8 +446,8 @@ function egyszerremindet() {
       "Name": obj.data[i].Name,
       "Other": obj.data[i].Other,
       "Path": {
-        "kinka-pc":"",
-        "Lenovo": ""
+        "kinka-pc": obj.data[i].Path,
+        "Lenovo":  obj.data[i].Path
       },
       "Season": obj.data[i].Season
     }
@@ -447,4 +456,5 @@ function egyszerremindet() {
   } //for ege
 } //egyszerremindet()vege
 
- // egyszerremindet();
+ //
+// egyszerremindet();
