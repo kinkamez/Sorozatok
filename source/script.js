@@ -79,7 +79,7 @@ async function show(melyiket) {
   document.getElementById('sorozatok').innerHTML = "";
   // ref.on('value', gotData, errData);
   ref.on('value', function(data) {
-    let nev, evad, evadperresz, resz, archiv, ut, mas;
+    let nev, evad, evadperresz, resz, archiv, ut, mas, keykins, keylens;
     document.getElementById("sorozatok").innerHTML = "";
     let fireadatok = data.val();
     let keys = Object.keys(fireadatok);
@@ -91,6 +91,8 @@ async function show(melyiket) {
       resz = fireadatok[k].Episode;
       evad = fireadatok[k].Season;
       ut = fireadatok[k][computerName];
+      keykins = fireadatok[k]["kinka-pc"];
+      keylens = fireadatok[k]["Lenovo"];
 
       archiv = fireadatok[k].Archive;
       mas = fireadatok[k].Other;
@@ -130,7 +132,7 @@ async function show(melyiket) {
         var gomb_egy = document.createElement('input');
         gomb_egy.setAttribute("type", "button");
         gomb_egy.setAttribute("target", "ujel");
-        gomb_egy.setAttribute("onclick", 'modositas(\'' + evad + '\',\'' + resz + '\',\'' + evadperresz + '\',\'' + ut + '\',\'' + nev + '\',\'' + archiv + '\',\'' + mas + '\',\'' + k + '\')');
+        gomb_egy.setAttribute("onclick", 'modositas(\'' + evad + '\',\'' + resz + '\',\'' + evadperresz + '\',\'' + ut + '\',\'' + nev + '\',\'' + archiv + '\',\'' + mas + '\',\'' + k+ '\',\'' + keykins + '\',\'' + keylens  + '\')');
         gomb_egy.className = "a512 kicsigombik";
 
         var gomb_ketto = document.createElement('input');
@@ -238,11 +240,17 @@ function mappatartalom(mappas, evadsa, reszsa, opcio, nev) {
 
 // uj sorozat beíró
 async function newe() {
-  let result, newPostKey;
+  let result, newPostKey , valtozo;
   if (document.getElementById("beallitas7").checked == true) {
     result = 1;
   } else {
     result = 2;
+  }
+  if (computerName == "kinka-pc") {
+     document.getElementById("kinkahidden").value =  document.getElementById("ujhely").value;
+  }
+  else {
+     document.getElementById("Lenovo").value =  document.getElementById("ujhely").value;
   }
   let beirandoobj = {
     "Name": document.getElementById("ujname").value,
@@ -256,8 +264,8 @@ async function newe() {
 
 
     //   // [computerName]: document.getElementById("ujhely").value
-    //   // "kinka-pc": "",
-    //   // "Lenovo": ""
+      "kinka-pc": document.getElementById("kinkahidden").value,
+      "Lenovo": document.getElementById("lenovohidden").value,
 
     "Other": parseInt(document.getElementById("ujmas").value, 10)
   };
@@ -275,16 +283,29 @@ async function newe() {
     firebase.database().ref('data/' + newPostKey).set(beirandoobj); //firebaseba
     // let faszagyerek = { [computerName] : document.getElementById("ujhely").value }
     // firebase.database().ref('data/' + newPostKey ).update(faszagyerek); //firebaseba
-    firebase.database().ref('data/' + newPostKey ).transaction(function(post) {
-      if (post) {
-        post[computerName] = document.getElementById("ujhely").value;
-      }
-      else {
-          post[computerName] = document.getElementById("ujhely").value;
-      }
-
-      return post;
-    });
+    // firebase.database().ref('data/' + newPostKey + /Path ).transaction(function(valuse){
+    //     if (valuse["kinka-pc"] !== null ) {
+    //     if (computerName == "kinka-pc") {
+    //         valuse["kinka-pc"] = document.getElementById("ujhely").value;
+    //         valuse["Lenovo"] ;
+    //     }
+    //
+    //
+    //
+    //       return  valuse;
+    //
+    //     } else if (valuse["Lenovo"] !== null) {
+    //       if (computerName == "Lenovo") {
+    //           valuse["Lenovo"] = document.getElementById("ujhely").value;
+    //       }
+    //
+    //
+    //       return  valuse;
+    //
+    //     } else {
+    //       return   valuse;
+    //     }
+    //   });
   } catch (e) {
     uzenetek(e);
   } finally {
@@ -312,7 +333,7 @@ function urit() {
 
 }
 
-function modositas(evadas, reszadas, maxadas, helyadas, nevadas, arhiva, masska, key) {
+function modositas(evadas, reszadas, maxadas, helyadas, nevadas, arhiva, masska, key, keykin, keylen) {
   backupfunk();
   urit();
   ujelem("ujel");
@@ -324,6 +345,8 @@ function modositas(evadas, reszadas, maxadas, helyadas, nevadas, arhiva, masska,
   document.getElementById("ujhely").value = helyadas;
   document.getElementById("ujmas").value = masska;
   document.getElementById("hiddeninput").value = key;
+  document.getElementById("kinkahidden").value = keykin;
+  document.getElementById("lenovohidden").value = keylen;
   if (arhiva == 1) {
     document.getElementById("beallitas7").checked = true;
   } else if (arhiva == 2) {
