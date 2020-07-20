@@ -252,7 +252,7 @@ async function newe() {
     "Episodeyear": parseInt(document.getElementById("ujreszevad").value, 10),
 
 
-        [computerName]: document.getElementById("ujhely").value,
+        // [computerName]: document.getElementById("ujhely").value,
 
 
     //   // [computerName]: document.getElementById("ujhely").value
@@ -274,17 +274,17 @@ async function newe() {
 
     firebase.database().ref('data/' + newPostKey).set(beirandoobj); //firebaseba
     // let faszagyerek = { [computerName] : document.getElementById("ujhely").value }
-    // firebase.database().ref('data/' + newPostKey + '/Path/').update(faszagyerek); //firebaseba
-    // firebase.database().ref('data/' + newPostKey + '/Path/').transaction(function(post) {
-    //   if (post) {
-    //     post[computerName] = document.getElementById("ujhely").value;
-    //   }
-    //   else {
-    //       post[computerName] = document.getElementById("ujhely").value;
-    //   }
-    //
-    //   return post;
-    // });
+    // firebase.database().ref('data/' + newPostKey ).update(faszagyerek); //firebaseba
+    firebase.database().ref('data/' + newPostKey ).transaction(function(post) {
+      if (post) {
+        post[computerName] = document.getElementById("ujhely").value;
+      }
+      else {
+          post[computerName] = document.getElementById("ujhely").value;
+      }
+
+      return post;
+    });
   } catch (e) {
     uzenetek(e);
   } finally {
