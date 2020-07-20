@@ -44,10 +44,10 @@ let nev, evad, evadperresz, resz, archiv, ut, mas;
         // post.Episodeyear = mennyiresz(post.Other,post.Season);
       }
         mennyiresz( post.Other,  post.Season, key) ;
-      if (ValidURL(post.Path[computerName]) == false && document.getElementById("beallitas1").checked) {
-        mappatartalom(post.Path[computerName], post.Season, post.Episode, 0, post.Name);
-      } else if (ValidURL(post.Path[computerName]) && document.getElementById("beallitas1").checked) {
-        webnezo(post.Path[computerName], post.Season, post.Episode);
+      if (ValidURL(post[computerName]) == false && document.getElementById("beallitas1").checked) {
+        mappatartalom(post[computerName], post.Season, post.Episode, 0, post.Name);
+      } else if (ValidURL(post[computerName]) && document.getElementById("beallitas1").checked) {
+        webnezo(post[computerName], post.Season, post.Episode);
       }
       // TODO: mennyi az összes rész? check és beírni.
     }

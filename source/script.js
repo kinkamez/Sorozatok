@@ -281,31 +281,7 @@ async function newe() {
     }
 
     firebase.database().ref('data/' + newPostKey).set(beirandoobj); //firebaseba
-    // let faszagyerek = { [computerName] : document.getElementById("ujhely").value }
-    // firebase.database().ref('data/' + newPostKey ).update(faszagyerek); //firebaseba
-    // firebase.database().ref('data/' + newPostKey + /Path ).transaction(function(valuse){
-    //     if (valuse["kinka-pc"] !== null ) {
-    //     if (computerName == "kinka-pc") {
-    //         valuse["kinka-pc"] = document.getElementById("ujhely").value;
-    //         valuse["Lenovo"] ;
-    //     }
-    //
-    //
-    //
-    //       return  valuse;
-    //
-    //     } else if (valuse["Lenovo"] !== null) {
-    //       if (computerName == "Lenovo") {
-    //           valuse["Lenovo"] = document.getElementById("ujhely").value;
-    //       }
-    //
-    //
-    //       return  valuse;
-    //
-    //     } else {
-    //       return   valuse;
-    //     }
-    //   });
+
   } catch (e) {
     uzenetek(e);
   } finally {
@@ -330,6 +306,8 @@ function urit() {
   document.getElementById("FileUpload").value = '';
 
   document.getElementById("szepislesz").click();
+  document.getElementById("lenovohidden").value = "";
+   document.getElementById("kinkahidden").value = "";
 
 }
 
@@ -457,27 +435,42 @@ window.onclick = function(e) {
 function egyszerremindet() {
   let rawdata = fs.readFileSync(tarolo);
   let obj = JSON.parse(rawdata);
-  let nev, evad, evadperresz, resz, archiv, ut, mas;
+  let nev, evad, evadperresz, resz, archiv, ut, mas , jsonban;
 
   people = sortByKey(obj.data, beproba.miszerint); //sorbarakás abc
 
   for (var i = 0; i < obj.data.length; i++) {
-    let jsonban = {
-      "Archive": obj.data[i].Archive,
-      "Episode": obj.data[i].Episode,
-      "Episodeyear": obj.data[i].Episodeyear,
-      "Name": obj.data[i].Name,
-      "Other": obj.data[i].Other,
-      "Path": {
-        "kinka-pc": obj.data[i].Path,
-        "Lenovo":  obj.data[i].Path
-      },
-      "Season": obj.data[i].Season
+    if (ValidURL(obj.data[i].Path)) {
+      jsonban = {
+        "Archive": obj.data[i].Archive,
+        "Episode": obj.data[i].Episode,
+        "Episodeyear": obj.data[i].Episodeyear,
+        "Name": obj.data[i].Name,
+        "Other": obj.data[i].Other,
+
+          "kinka-pc": obj.data[i].Path,
+          "Lenovo":  obj.data[i].Path,
+        "Season": obj.data[i].Season
+      }
     }
+    else {
+      jsonban = {
+        "Archive": obj.data[i].Archive,
+        "Episode": obj.data[i].Episode,
+        "Episodeyear": obj.data[i].Episodeyear,
+        "Name": obj.data[i].Name,
+        "Other": obj.data[i].Other,
+
+          "kinka-pc": obj.data[i].Path,
+          "Lenovo": "",
+        "Season": obj.data[i].Season
+      }
+    }
+
 
     ref.push(jsonban);
   } //for ege
 } //egyszerremindet()vege
 
  //
-// egyszerremindet();
+ // egyszerremindet();
