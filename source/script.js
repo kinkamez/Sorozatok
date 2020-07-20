@@ -90,7 +90,7 @@ async function show(melyiket) {
       nev = fireadatok[k].Name;
       resz = fireadatok[k].Episode;
       evad = fireadatok[k].Season;
-      ut = fireadatok[k].Path[computerName];
+      ut = fireadatok[k][computerName];
 
       archiv = fireadatok[k].Archive;
       mas = fireadatok[k].Other;
@@ -250,15 +250,15 @@ async function newe() {
     "Season": parseInt(document.getElementById("ujevad").value, 10),
     "Episode": parseInt(document.getElementById("ujresz").value, 10),
     "Episodeyear": parseInt(document.getElementById("ujreszevad").value, 10),
-    "Path": {
-      [computerName]: {
-        "Ut" : document.getElementById("ujhely").value
-      }
+
+
+        [computerName]: document.getElementById("ujhely").value,
+
 
     //   // [computerName]: document.getElementById("ujhely").value
     //   // "kinka-pc": "",
     //   // "Lenovo": ""
-    },
+
     "Other": parseInt(document.getElementById("ujmas").value, 10)
   };
   try {
@@ -272,7 +272,7 @@ async function newe() {
       document.getElementById("hiddeninput").value = "";
     }
 
-    firebase.database().ref('data/' + newPostKey).update(beirandoobj); //firebaseba
+    firebase.database().ref('data/' + newPostKey).set(beirandoobj); //firebaseba
     // let faszagyerek = { [computerName] : document.getElementById("ujhely").value }
     // firebase.database().ref('data/' + newPostKey + '/Path/').update(faszagyerek); //firebaseba
     // firebase.database().ref('data/' + newPostKey + '/Path/').transaction(function(post) {
