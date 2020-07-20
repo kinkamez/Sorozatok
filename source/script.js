@@ -250,7 +250,7 @@ async function newe() {
      document.getElementById("kinkahidden").value =  document.getElementById("ujhely").value;
   }
   else {
-     document.getElementById("Lenovo").value =  document.getElementById("ujhely").value;
+     document.getElementById("lenovohidden").value =  document.getElementById("ujhely").value;
   }
   let beirandoobj = {
     "Name": document.getElementById("ujname").value,
