@@ -1,6 +1,6 @@
 const nwGui = require('nw.gui');
-const path = require('path');
-const fs = require('fs');
+
+// const fs = require('fs');
 const readdirp = require('readdirp');
 const open = require("open");
 const tarolo = "source/tarolo.json";
@@ -51,14 +51,6 @@ function ujelem(mit) {
     x.style.display = "none";
   }
 }
-// sorbarakás abc szerint
-function sortByKey(array, key) {
-  return array.sort(function(a, b) {
-    var x = a[key];
-    var y = b[key];
-    return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-  });
-}
 
 function doSomething(elem) {
   var alt = document.createTextNode(elem.getAttribute('alt'));
@@ -70,28 +62,29 @@ async function show(melyiket) {
   document.getElementById('sorozatok').innerHTML = "";
 
   ref.on('value', function(data) {
-    let nev, evad, evadperresz, resz, archiv, ut, mas, keykins, keylens;
     document.getElementById("sorozatok").innerHTML = "";
-    let fireadatok = data.val();
-    let keys = Object.keys(fireadatok);
+    data.forEach(function(childSnapshot) {
+      let nev, evad, evadperresz, resz, archiv, ut, mas, keykins, keylens;
 
-    for (var i = 0; i < keys.length; i++) {
-      let k = keys[i];
+      // key will be "ada" the first time and "alan" the second time
+      var k = childSnapshot.key;
+      // childData will be the actual contents of the child
 
-      nev = fireadatok[k].Name;
-      resz = fireadatok[k].Episode;
-      evad = fireadatok[k].Season;
-      ut = fireadatok[k][computerName];
-      keykins = fireadatok[k]["kinka-pc"];
-      keylens = fireadatok[k]["Lenovo"];
+      var fireadatok = childSnapshot.val();
 
-      archiv = fireadatok[k].Archive;
-      mas = fireadatok[k].Other;
-      evadperresz = fireadatok[k].Episodeyear;
-      // itt lehet egyesivel feldolgozni
+      nev = fireadatok.Name;
+      evad = fireadatok.Season;
+      resz = fireadatok.Episode;
+      ut = fireadatok[computerName];
+      keykins = fireadatok["kinka-pc"];
+      keylens = fireadatok["Lenovo"];
+
+      archiv = fireadatok.Archive;
+      mas = fireadatok.Other;
+      evadperresz = fireadatok.Episodeyear;
 
       if (archiv == melyiket) {
-
+        console.log("archive egyenl");
         var new_egesz = document.createElement('div');
         new_egesz.className = "egesz";
         var new_felso = document.createElement('div');
@@ -113,6 +106,7 @@ async function show(melyiket) {
 
         var new_felsoevadresz = document.createElement('div');
         new_felsoevadresz.className = "adat2";
+        new_felsoevadresz.id = mas + "33";
         new_felsoevadresz.innerHTML = "S" + evad + "/E" + resz;
 
         var new_also = document.createElement('div');
@@ -156,11 +150,10 @@ async function show(melyiket) {
         new_also.appendChild(gomb_ketto);
         new_also.appendChild(gomb_harom);
       }
-    }
-    if (document.getElementById("beallitas4").checked == true) {
-      shower(melyiket);
-    }
+      // itt lehet egyesivel feldolgozni
+    });
   });
+  koviresz();
 }
 
 function uzenetek(mituzensz) {
@@ -296,6 +289,8 @@ function modositas(evadas, reszadas, maxadas, helyadas, nevadas, arhiva, masska,
   }
 }
 
+
+
 function extractHostname(url) {
   var hostname;
   if (url.indexOf("//") > -1) {
@@ -366,10 +361,7 @@ function myF() {
 function backupfunk() {
 
   // TODO: firebase to json
-  const backup = 'source/data/backup/' + Date.now() + '.json';
-  fs.copyFile(tarolo, backup, (err) => {
-    if (err) throw err;
-  });
+
 }
 
 window.onclick = function(e) {
@@ -416,5 +408,13 @@ function egyszerremindet() {
   } //for ege
 } //egyszerremindet()vege
 // egyszerremindet();
+
+var x = document.getElementById("ujname");
+x.addEventListener("keydown", function(e) {
+  tvdbnevkeres(x.value);
+});
+
+
+
 
 show(1);

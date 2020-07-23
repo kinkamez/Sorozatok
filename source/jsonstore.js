@@ -13,7 +13,8 @@ let firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 let database = firebase.database();
-let ref = database.ref('data');
+// TODO: lehesseb beállítani mi az alapvető sort optiom
+let ref = database.ref("data").orderByChild("Name");
 
 // NE HASZNÁLD csak ha elcseszted az adatbázist! mindent átír a json -> firebase
 
@@ -49,7 +50,7 @@ let nev, evad, evadperresz, resz, archiv, ut, mas;
       } else if (ValidURL(post[computerName]) && document.getElementById("beallitas1").checked) {
         webnezo(post[computerName], post.Season, post.Episode);
       }
-      // TODO: mennyi az összes rész? check és beírni.
+    tvdbobjekletolt(post.Other);
     }
     return post;
   });

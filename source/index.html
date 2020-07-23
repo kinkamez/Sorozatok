@@ -6,7 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 
-
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.16.1//firebase-database.js"></script>
 
@@ -95,38 +96,61 @@
 
       <fieldset>
         <legend>Új sorozat hozzáadása:</legend>
-        <input type="text" id="ujname" placeholder="Név:" required style="width:50.5%">
-        <input type="number" id="ujevad" placeholder="Évad:" required style="width:10.5%" value="1">
-        <input type="number" id="ujresz" placeholder="Rész:" required style="width:10.5%" value="0">
-        <input type="number" id="ujreszevad" placeholder="Max:" required style="width:10.5%">
+        <div class="grid-container">
 
-        <!-- <input id="open-project" type="file" webkitdirectory directory /> -->
-        <input type="number" id="ujmas" placeholder="thetvdb ID:" autofocus style="width:30%">
-        <!-- <select class="select-text" id="ujarhive">
+          <div class="form-row" style="  grid-column: 1 /  4; grid-row: 1/2;">
+            <input type="text" id="ujname" class="form-textbox"  autofocus required text-transform: capitalize; style='width:95%'>
+            <label class="form-label " for="ujname">Név:</label>
+          </div>
+          <div class="form-row" style="  grid-column: 4 /   5; grid-row:  1/2;">
+            <input class="form-textbox" type="number" id="ujevad" required value="1" style='width:85%'>
+            <label class="form-label " for="ujevad">Évad:</label>
+          </div>
+          <div class="form-row" style="  grid-column: 5 /   6; grid-row: 1/2;" >
+            <input class="form-textbox" type="number" id="ujresz" required value="0"  style='width:85%'>
+            <label class="form-label " for="ujresz">Rész:</label>
+          </div>
+          <div class="form-row" style="  grid-column: 6 /   7; grid-row: 1/2;">
+            <input class="form-textbox" type="number" id="ujreszevad" required  style='width:85%' >
+            <label class="form-label " for="ujreszevad">Max:</label>
+          </div>
 
-          <option value="1">Megjelenítés</option>
-          <option value="2">Elrejtés</option>
-
-        </select> -->
-        <label for="beallitas7" style="margin-right: 15px;"> Megjelenítés:</label>
-        <label class="switch" for="beallitas7">
-          <input type="checkbox" id="beallitas7" checked>
-          <div class="slider round"></div>
-        </label>
 
 
-        <input type="text" id="ujhely" placeholder="Útvoval:" size="50" style="width:98%">
+          <div class="form-row" style="  grid-column: 1/4; grid-row: 2/3;">
+            <input class="form-textbox" type="number" id="ujmas" required style='width:98%'>
+            <label class="form-label " for="ujmas">thetvdb ID:</label>
+          </div>
+          <div class="form-row" style="  grid-column: 4/6; grid-row: 2/3; align-self: center;">
+            <label for="beallitas7" style="margin-right: 15px; "> Megjelenítés:</label>
+            <label class="switch" for="beallitas7">
+              <input type="checkbox" id="beallitas7" checked>
+              <div class="slider round"></div>
+            </label>
+          </div>
 
-        <input type="file" id="FileUpload" onchange="selectFolder(event)" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
-        <br><br>
+
+          <div class="form-row" style="  grid-column: 1/7; grid-row: 3/4;">
+            <input class="form-textbox" type="text" id="ujhely" size="50" required style='width:98%'>
+            <label class="form-label " for="ujhely">Útvonal:</label>
+          </div>
+          <div class="form-row" style="  grid-column: 1/7; grid-row: 4/5;">
+            <input type="file" id="FileUpload" onchange="selectFolder(event)" webkitdirectory mozdirectory msdirectory odirectory directory multiple style="width: 98%"/>
+          </div>
+
+
+
+
+        </div>
         <div id="loading">
 
         </div>
         <input type="button" value="Mentés" class="button5" style="float: right" onclick="newe()">
         <input type="button" id="torlogomb" value="Törlés" class="button44" style="float: right" onclick="urit();ujelem('ujel');">
         <input type="hidden" id="hiddeninput" name="custId" value="">
-          <input type="hidden" id="kinkahidden"  value="">
-            <input type="hidden" id="lenovohidden" value="">
+        <input type="hidden" id="kinkahidden" value="">
+        <input type="hidden" id="lenovohidden" value="">
+
       </fieldset>
 
 
@@ -155,7 +179,22 @@
 <script type="text/javascript" src="script.js"></script>
 <!-- <script type="text/javascript" src="sori.js"></script> -->
 
+<script type="text/javascript">
+  let availableTags = [];
+  $(function() {
 
+    $("#ujname").autocomplete({
+      delay: 500,
+      minLength: 2,
+      source: availableTags,
+      select: function(event, ui) {
+        tvdbobjekletolt(ui.item.value);
+        mennyiresz(ui.item.value, "1", 1);
+        availableTags = [];
+      }
+    });
+  });
+</script>
 <script>
   // Add active class to the current button (highlight it)
   var header = document.getElementById("myTopnav");
