@@ -151,6 +151,8 @@ async function show(melyiket) {
 			// itt lehet egyesivel feldolgozni
 		});
 		koviresz();
+	}, function(errorObject) {
+		console.log("The read failed: " + errorObject.code);
 	});
 	// koviresz();
 }
