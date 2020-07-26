@@ -260,6 +260,7 @@ textarea {
 }
 
 .tavos {
+  
   margin-right: 15px;
 }
 
@@ -473,8 +474,20 @@ input:checked+.slider:before {
   margin: -1px;
   color: #ccc;
 }
-
+.keres{
+  /* border: 1px solid grey; */
+  width: auto;
+ border: none; /* Prevent double borders */
+ cursor: pointer;
+  background: #2196F3;
+  color: white;
+  font-size: 17px;
+  float: right;
+  height: 36px;
+margin-left: 0;
+}
 /* ide jon a lebego label */
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;

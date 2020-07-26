@@ -1,211 +1,214 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.16.1//firebase-database.js"></script> -->
 
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.16.1//firebase-database.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script> -->
 
-  <!-- <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js"></script> -->
-
-  <link rel="stylesheet" href="style.css">
-  <!-- conzolos cucc -->
-  <!-- <script>
+    <link rel="stylesheet" href="style.css">
+    <!-- conzolos cucc -->
+    <!-- <script>
     require('nw.gui').Window.get().showDevTools();
   </script> -->
 
 
 
-  <title></title>
-</head>
+    <title></title>
+  </head>
 
-<body>
-
-
-  <nav>
-
-    <ul class="topnav" id="myTopnav">
-      <li><a href="#" onclick="ujelem('ujel')">Új</a></li>
-      <li><a href="#" id="szepislesz" class="btn active" onclick="show('1')">Sorozatok</a></li>
-      <li><a href="#" class="btn" onclick="show('2')">Rejtettek</a></li>
-      <li><a href="#" onclick="ujelem('settings')">Beállítások</a></li>
-      <li><a href="#" class="btn" onclick="">Filmek</a></li>
-
-      <li><a href="#" class="dropbtn" onclick="myF()"><img src="img/cloud.png" height="14px" onclick="myF()"></a>
-        <div class="dropdown-content" id="myDropdown">
-          <a href="#" onclick="jsonToFirestore()">Mentés</a>
-          <a href="#" onclick="gettelo()">Visszaállítás</a>
-
-        </div>
-      </li>
-    </ul>
-
-  </nav>
+  <body>
 
 
-  <div id="settings" class="ezvana">
-    <!-- <div id="settings" class="ezvana" style=" display:none "> -->
+    <nav>
+
+      <ul class="topnav" id="myTopnav">
+        <li><a href="#" onclick="ujelem('ujel')">Új</a></li>
+        <li><a href="#" id="szepislesz" class="btn active" onclick="show('1')">Sorozatok</a></li>
+        <li><a href="#" class="btn" onclick="show('2')">Rejtettek</a></li>
+        <li><a href="#" onclick="ujelem('settings')">Beállítások</a></li>
+        <li><a href="#" class="btn" onclick="">Filmek</a></li>
+
+        <li><a href="#" class="dropbtn" onclick="myF()"><img src="img/cloud.png" height="14px" onclick="myF()"></a>
+          <div class="dropdown-content" id="myDropdown">
+            <a href="#" onclick="jsonToFirestore()">Mentés</a>
+            <a href="#" onclick="gettelo()">Visszaállítás</a>
+
+          </div>
+        </li>
+      </ul>
+
+    </nav>
 
 
-    <div>
-      <label class="switch" for="beallitas1">
-        <input type="checkbox" id="beallitas1" store="checkbox1">
-        <div class="slider round"></div>
-      </label>
-      <label for="beallitas1" class="tavos">Megnyitás </label>
-    </div>
-    <div>
-      <label class="switch" for="beallitas2">
-        <input type="checkbox" id="beallitas2" store="checkbox2">
-        <div class="slider round"></div>
-      </label>
-      <label for="beallitas2" class="tavos">Netmozi </label>
-    </div>
-    <div>
+    <div id="settings" class="ezvana">
+      <!-- <div id="settings" class="ezvana" style=" display:none "> -->
 
-      <label class="switch" for="beallitas4">
-        <input type="checkbox" id="beallitas4" store="checkbox4">
-        <div class="slider round"></div>
-      </label>
-      <label for="beallitas4" class="tavos">tvdb </label>
 
-    </div>
-    <div>
-      <label class="switch" for="beallitas5">
-        <input type="checkbox" id="beallitas5" store="checkbox5">
-        <div class="slider round"></div>
-      </label>
-      <label for="beallitas5" class="tavos">sorozatbarát </label>
-    </div>
+      <div>
+        <label class="switch" for="beallitas1">
+          <input type="checkbox" id="beallitas1" store="checkbox1">
+          <div class="slider round"></div>
+        </label>
+        <label for="beallitas1" class="tavos">Megnyitás </label>
+      </div>
+      <div>
+        <label class="switch" for="beallitas2">
+          <input type="checkbox" id="beallitas2" store="checkbox2">
+          <div class="slider round"></div>
+        </label>
+        <label for="beallitas2" class="tavos">Netmozi </label>
+      </div>
+      <div>
 
-    <!-- <input type="checkbox" id="beallitas3" value="Bike" checked>
+        <label class="switch" for="beallitas4">
+          <input type="checkbox" id="beallitas4" store="checkbox4">
+          <div class="slider round"></div>
+        </label>
+        <label for="beallitas4" class="tavos">tvdb </label>
+
+      </div>
+      <div>
+        <label class="switch" for="beallitas5">
+          <input type="checkbox" id="beallitas5" store="checkbox5">
+          <div class="slider round"></div>
+        </label>
+        <label for="beallitas5" class="tavos">sorozatbarát </label>
+      </div>
+
+      <!-- <input type="checkbox" id="beallitas3" value="Bike" checked>
       <label for="beallitas3">Sorozatbarát integráció</label> -->
-  </div>
-  <div class="sticky" style="height:15px;">
-    <div class="uzenetes" id="fontosuzi"></div>
-  </div>
-
-  <section>
-    <div id="ujel" style=" display:none ">
-
-
-      <fieldset>
-        <legend>Új sorozat hozzáadása:</legend>
-        <div class="grid-container">
-
-          <div class="form-row" style="  grid-column: 1 /  4; grid-row: 1/2;">
-            <input type="text" id="ujname" class="form-textbox"  autofocus required text-transform: capitalize; style='width:95%'>
-            <label class="form-label " for="ujname">Név:</label>
-          </div>
-          <div class="form-row" style="  grid-column: 4 /   5; grid-row:  1/2;">
-            <input class="form-textbox" type="number" id="ujevad" required value="1" style='width:85%'>
-            <label class="form-label " for="ujevad">Évad:</label>
-          </div>
-          <div class="form-row" style="  grid-column: 5 /   6; grid-row: 1/2;" >
-            <input class="form-textbox" type="number" id="ujresz" required value="0"  style='width:85%'>
-            <label class="form-label " for="ujresz">Rész:</label>
-          </div>
-          <div class="form-row" style="  grid-column: 6 /   7; grid-row: 1/2;">
-            <input class="form-textbox" type="number" id="ujreszevad" required  style='width:85%' >
-            <label class="form-label " for="ujreszevad">Max:</label>
-          </div>
-
-
-
-          <div class="form-row" style="  grid-column: 1/4; grid-row: 2/3;">
-            <input class="form-textbox" type="number" id="ujmas" required style='width:98%'>
-            <label class="form-label " for="ujmas">thetvdb ID:</label>
-          </div>
-          <div class="form-row" style="  grid-column: 4/6; grid-row: 2/3; align-self: center;">
-            <label for="beallitas7" style="margin-right: 15px; "> Megjelenítés:</label>
-            <label class="switch" for="beallitas7">
-              <input type="checkbox" id="beallitas7" checked>
-              <div class="slider round"></div>
-            </label>
-          </div>
-
-
-          <div class="form-row" style="  grid-column: 1/7; grid-row: 3/4;">
-            <input class="form-textbox" type="text" id="ujhely" size="50" required style='width:98%'>
-            <label class="form-label " for="ujhely">Útvonal:</label>
-          </div>
-          <div class="form-row" style="  grid-column: 1/7; grid-row: 4/5;">
-            <input type="file" id="FileUpload" onchange="selectFolder(event)" webkitdirectory mozdirectory msdirectory odirectory directory multiple style="width: 98%"/>
-          </div>
-
-
-
-
-        </div>
-        <div id="loading">
-
-        </div>
-        <input type="button" value="Mentés" class="button5" style="float: right" onclick="newe()">
-        <input type="button" id="torlogomb" value="Törlés" class="button44" style="float: right" onclick="urit();ujelem('ujel');">
-        <input type="hidden" id="hiddeninput" name="custId" value="">
-        <input type="hidden" id="kinkahidden" value="">
-        <input type="hidden" id="lenovohidden" value="">
-
-      </fieldset>
-
-
-
+    </div>
+    <div class="sticky" style="height:15px;">
+      <div class="uzenetes" id="fontosuzi"></div>
     </div>
 
-  </section>
-  <section>
-    <div class="fodoboz" id="sorozatok">
-
-    </div>
-  </section>
+    <section>
+      <div id="ujel" style=" display:none ">
 
 
-  <!-- <button type="button" class="button5" name="button" onclick="nyit('/run/media/kinka/Data/sorozatok/Breaking.Bad.COMPLETE.BDRIP.x264.Hun.Eng-Krissz/Breaking.Bad.S02.BDRIP.x264.Hun.Eng-Krissz/Breaking.Bad.S02E11.BDRIP.x264.Hun.Eng-Krissz.mkv')">GOMB shell</button> -->
+        <fieldset>
+          <legend>Új sorozat hozzáadása:</legend>
+          <div class="grid-container">
 
-  <!-- <button type="button" name="button" class="button5"onclick="nyit('/home/kinka/Pictures/Screenshot_20191110_100855.png')">GOMB nyit</button> -->
-  <!-- <button type="button" name="button" class="button5"onclick="megNez(1,2,'uas',12,'nev')">GOMB newe</button> -->
+            <div class="form-row" style="  grid-column: 1 /  4; grid-row: 1/2;">
 
-</body>
+              <input type="text" id="ujname" class="form-textbox" autofocus required style='width:95%; text-transform: capitalize;'>
+              <label class="form-label " for="ujname">Név:</label>
 
-<script type="text/javascript" src="tvdb.js"></script>
-<script type="text/javascript" src="img.js"></script>
-<script type="text/javascript" src="jsonstore.js"></script>
-<script type="text/javascript" src="jiimp.js"></script>
-<script type="text/javascript" src="script.js"></script>
-<!-- <script type="text/javascript" src="sori.js"></script> -->
+            </div>
+            <div class="form-row" style="  grid-column: 4 /   5; grid-row:  1/2;">
+              <input class="form-textbox" type="number" id="ujevad" required value="1" style='width:85%'>
+              <label class="form-label " for="ujevad">Évad:</label>
+            </div>
+            <div class="form-row" style="  grid-column: 5 /   6; grid-row: 1/2;">
+              <input class="form-textbox" type="number" id="ujresz" required value="0" style='width:85%'>
+              <label class="form-label " for="ujresz">Rész:</label>
+            </div>
+            <div class="form-row" style="  grid-column: 6 /   7; grid-row: 1/2;">
+              <input class="form-textbox" type="number" id="ujreszevad" required style='width:85%'>
+              <label class="form-label " for="ujreszevad">Max:</label>
+            </div>
 
-<script type="text/javascript">
-  let availableTags = [];
-  $(function() {
 
-    $("#ujname").autocomplete({
-      delay: 500,
-      minLength: 2,
-      source: availableTags,
-      select: function(event, ui) {
-        tvdbobjekletolt(ui.item.value);
-        mennyiresz(ui.item.value, "1", 1);
-        availableTags = [];
-      }
+
+            <div class="form-row" style="  grid-column: 1/5; grid-row: 2/3;">
+              <input class="form-textbox" type="number" id="ujmas" required style='width:98%'>
+              <label class="form-label " for="ujmas">thetvdb ID:</label>
+            </div>
+            <div class="form-row" style="  grid-column: 5/7; grid-row: 2/3; align-self: center;">
+              <label for="beallitas7" style="margin-right:5px;"> Megjelenítés:</label>
+              <label class="switch" for="beallitas7">
+                <input type="checkbox" id="beallitas7" checked>
+                <div class="slider round"></div>
+              </label>
+            </div>
+
+
+            <div class="form-row" style="  grid-column: 1/7; grid-row: 3/4;">
+              <input class="form-textbox" type="text" id="ujhely" size="50" required style='width:98%'>
+              <label class="form-label " for="ujhely">Útvonal:</label>
+            </div>
+            <div class="form-row" style="  grid-column: 1/7; grid-row: 4/5;">
+              <input type="file" id="FileUpload" onchange="selectFolder(event)" webkitdirectory mozdirectory msdirectory odirectory directory multiple style="width: 98%" />
+            </div>
+
+
+
+
+          </div>
+          <div id="loading">
+
+          </div>
+          <input type="button" value="Mentés" class="button5" style="float: right" onclick="newe()">
+          <input type="button" id="torlogomb" value="Törlés" class="button44" style="float: right" onclick="urit();ujelem('ujel');">
+          <input type="hidden" id="hiddeninput" name="custId" value="">
+          <input type="hidden" id="kinkahidden" value="">
+          <input type="hidden" id="lenovohidden" value="">
+
+        </fieldset>
+
+
+
+      </div>
+
+    </section>
+    <section>
+      <div class="fodoboz" id="sorozatok">
+
+      </div>
+    </section>
+
+
+    <!-- <button type="button" class="button5" name="button" onclick="nyit('/run/media/kinka/Data/sorozatok/Breaking.Bad.COMPLETE.BDRIP.x264.Hun.Eng-Krissz/Breaking.Bad.S02.BDRIP.x264.Hun.Eng-Krissz/Breaking.Bad.S02E11.BDRIP.x264.Hun.Eng-Krissz.mkv')">GOMB shell</button> -->
+
+    <!-- <button type="button" name="button" class="button5"onclick="nyit('/home/kinka/Pictures/Screenshot_20191110_100855.png')">GOMB nyit</button> -->
+    <!-- <button type="button" name="button" class="button5"onclick="megNez(1,2,'uas',12,'nev')">GOMB newe</button> -->
+
+  </body>
+
+  <script type="text/javascript" src="tvdb.js"></script>
+  <script type="text/javascript" src="img.js"></script>
+  <script type="text/javascript" src="jsonstore.js"></script>
+  <script type="text/javascript" src="jiimp.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+
+
+  <!-- <script type="text/javascript" src="sori.js"></script> -->
+
+  <script type="text/javascript">
+    // let availableTags = [];
+    $(function() {
+
+      $("#ujname").autocomplete({
+        source: availableTags,
+        autoFocus: true,
+        select: function(event, ui) {
+          tvdbobjekletolt(ui.item.value);
+          mennyiresz(ui.item.value, "1", 1);
+          availableTags = [];
+        }
+      });
     });
-  });
-</script>
-<script>
-  // Add active class to the current button (highlight it)
-  var header = document.getElementById("myTopnav");
-  var btns = header.getElementsByClassName("btn");
-  for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function() {
-      var current = document.getElementsByClassName("active");
-      current[0].className = current[0].className.replace(" active", "");
-      this.className += " active";
-    });
-  }
-</script>
+  </script>
+  <script>
+    // Add active class to the current button (highlight it)
+    var header = document.getElementById("myTopnav");
+    var btns = header.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+      });
+    }
+  </script>
 
 </html>

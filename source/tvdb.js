@@ -3,6 +3,8 @@ const fs = require('fs');
 const path = require('path');
 const sleep = require('util').promisify(setTimeout);
 
+
+let availableTags = [];
 async function tvdbnevkeres(nev) {
   const show = await tv.find(nev, 'hu');
 
@@ -53,6 +55,9 @@ async function tvdbobjekletolt(id) {
   } catch (err) {
     uzenetek(err);
   }
+  finally{
+      document.getElementById("loading").innerHTML = "";
+  }
 
 } //tvdbobjektletolt vege
 
@@ -94,7 +99,7 @@ async function mennyiresz(id, tvdbreevad, key) {
 
 async function koviresz() {
   //// TODO: kitakaritani ezt a szar
-  await new Promise(resolve => setTimeout(resolve, 3000));
+  await new Promise(resolve => setTimeout(resolve, 2000));
   const fileok = fs.readdir("source/data/", function(err, files) {
     if (err) {
       return console.log('Unable to scan directory: ' + err);
@@ -110,7 +115,7 @@ async function koviresz() {
         var res3 = res2[1].split("E");
         let evadszam = parseInt(res2[0], 10);
         let reszszam = parseInt(res3[1], 10);
-console.log(evadszam, reszszam);
+
         let rawdata = fs.readFileSync("source/data/" + files[i]);
         const show = JSON.parse(rawdata);
 
@@ -150,7 +155,7 @@ console.log(evadszam, reszszam);
       } catch (e) {
 
       } finally {
-        
+
       }
 
     } //for vege

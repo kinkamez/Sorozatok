@@ -22,6 +22,7 @@
         "showDevToolsOnStartup": true
     },
     "dependencies": {
+        "@tarekraafat/autocomplete.js": "^7.2.0",
         "firebase": "^7.16.0",
         "firebase-admin": "^8.13.0",
         "firestore-export-import": "^0.6.1",
