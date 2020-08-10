@@ -22,8 +22,7 @@
         "showDevToolsOnStartup": true
     },
     "dependencies": {
-        "firebase": "^7.16.0",
-        "firebase-admin": "^8.13.0",
+        "firebase-admin": "^9.0.0",
         "image-downloader": "^3.5.0",
         "is-url": "^1.2.4",
         "jimp": "^0.9.3",

@@ -60,9 +60,10 @@ async function show(melyiket) {
 	document.getElementById('sorozatok').innerHTML = "";
 
 	ref.orderByChild("Name").on('value', function(data) {
+
 		document.getElementById("sorozatok").innerHTML = "";
 		data.forEach(function(childSnapshot) {
-			let nev, evad, evadperresz, resz, archiv, ut, mas, keykins, keylens;
+			let nev, evad, evadperresz, resz, archiv, ut, mas;
 
 			// key will be "ada" the first time and "alan" the second time
 			var k = childSnapshot.key;
@@ -74,15 +75,14 @@ async function show(melyiket) {
 			evad = fireadatok.Season;
 			resz = fireadatok.Episode;
 			ut = fireadatok[computerName];
-			keykins = fireadatok["kinka-pc"];
-			keylens = fireadatok["Lenovo"];
 
 			archiv = fireadatok.Archive;
 			mas = fireadatok.Other;
 			evadperresz = fireadatok.Episodeyear;
 
+
 			if (archiv == melyiket) {
-				console.log("archive egyenl");
+
 				var new_egesz = document.createElement('div');
 				new_egesz.className = "egesz";
 				var new_felso = document.createElement('div');
@@ -105,7 +105,8 @@ async function show(melyiket) {
 				var new_felsoevadresz = document.createElement('div');
 				new_felsoevadresz.className = "adat2";
 				new_felsoevadresz.id = mas + "33";
-				new_felsoevadresz.innerHTML = "S" + evad + "/E" + resz;
+				// new_felsoevadresz.innerHTML = "S" + evad + "/E" + resz;
+				new_felsoevadresz.innerHTML = `S${evad}/E${resz}`;
 
 				var new_also = document.createElement('div');
 				new_also.className = "gombos";
@@ -114,7 +115,7 @@ async function show(melyiket) {
 				var gomb_egy = document.createElement('input');
 				gomb_egy.setAttribute("type", "button");
 				gomb_egy.setAttribute("target", "ujel");
-				gomb_egy.setAttribute("onclick", 'modositas(\'' + evad + '\',\'' + resz + '\',\'' + evadperresz + '\',\'' + ut + '\',\'' + nev + '\',\'' + archiv + '\',\'' + mas + '\',\'' + k + '\',\'' + keykins + '\',\'' + keylens + '\')');
+				gomb_egy.setAttribute("onclick", `modositas(${evad}, ${resz},${evadperresz},'${ut}','${nev}',${archiv},${mas},'${k}')`);
 				gomb_egy.className = "a512 kicsigombik";
 
 				var gomb_ketto = document.createElement('input');
@@ -129,7 +130,7 @@ async function show(melyiket) {
 				gomb_harom.id = nev;
 				gomb_harom.setAttribute("onclick", ' fbnovelo(\'' + k + '\')');
 				let noveltt = parseInt(resz, 10) + 1;
-				gomb_harom.setAttribute("onmouseover", 'mappatartalom(\'' + ut + '\',\'' + evad + '\',\'' + noveltt + '\',1,\'' + nev + '\')');
+				gomb_harom.setAttribute("onmouseover", `mappatartalom('${ut}', ${evad},${noveltt},1,'${nev}')`);
 				gomb_harom.className = "a51 kicsigombik";
 				gomb_harom.setAttribute("title", resz + 1 + '/' + evadperresz + ' ');
 
@@ -215,47 +216,6 @@ function mappatartalom(mappas, evadsa, reszsa, opcio, nev) {
 	}
 }
 
-// uj sorozat beíró
-async function newe() {
-	let result, newPostKey, valtozo;
-	if (document.getElementById("beallitas7").checked == true) {
-		result = 1;
-	} else {
-		result = 2;
-	}
-	if (computerName == "kinka-pc") {
-		document.getElementById("kinkahidden").value = document.getElementById("ujhely").value;
-	} else {
-		document.getElementById("lenovohidden").value = document.getElementById("ujhely").value;
-	}
-	let beirandoobj = {
-		"Name": document.getElementById("ujname").value,
-		"Archive": parseInt(result, 10),
-		"Season": parseInt(document.getElementById("ujevad").value, 10),
-		"Episode": parseInt(document.getElementById("ujresz").value, 10),
-		"Episodeyear": parseInt(document.getElementById("ujreszevad").value, 10),
-		"kinka-pc": document.getElementById("kinkahidden").value,
-		"Lenovo": document.getElementById("lenovohidden").value,
-		"Other": parseInt(document.getElementById("ujmas").value, 10)
-	};
-	try {
-		if (document.getElementById("hiddeninput").value != "") {
-			newPostKey = document.getElementById("hiddeninput").value;
-			document.getElementById("hiddeninput").value = "";
-		} else {
-			newPostKey = firebase.database().ref().child('posts').push().key;
-			document.getElementById("hiddeninput").value = "";
-		}
-		firebase.database().ref('data/' + newPostKey).set(beirandoobj); //firebaseba
-	} catch (e) {
-		uzenetek(e);
-	} finally {
-		uzenetek("A művelet sikeres!");
-		urit();
-		ujelem("ujel");
-	}
-} //neww vege
-
 function urit() {
 	document.getElementById("ujname").value = "";
 	document.getElementById("ujresz").value = "";
@@ -267,29 +227,10 @@ function urit() {
 	document.getElementById("beallitas7").checked = true;
 	document.getElementById("FileUpload").value = '';
 	document.getElementById("szepislesz").click();
-	document.getElementById("lenovohidden").value = "";
-	document.getElementById("kinkahidden").value = "";
+
 }
 
-function modositas(evadas, reszadas, maxadas, helyadas, nevadas, arhiva, masska, key, keykin, keylen) {
-	urit();
-	ujelem("ujel");
-	document.documentElement.scrollTop = 0;
-	document.getElementById("ujname").value = nevadas;
-	document.getElementById("ujresz").value = reszadas;
-	document.getElementById("ujevad").value = evadas;
-	document.getElementById("ujreszevad").value = maxadas;
-	document.getElementById("ujhely").value = helyadas;
-	document.getElementById("ujmas").value = masska;
-	document.getElementById("hiddeninput").value = key;
-	document.getElementById("kinkahidden").value = keykin;
-	document.getElementById("lenovohidden").value = keylen;
-	if (arhiva == 1) {
-		document.getElementById("beallitas7").checked = true;
-	} else if (arhiva == 2) {
-		document.getElementById("beallitas7").checked = false;
-	}
-}
+
 
 
 
@@ -375,39 +316,37 @@ window.onclick = function(e) {
 	}
 }
 
-function egyszerremindet() {
-	let rawdata = fs.readFileSync(tarolo);
+async function egyszerremindet() {
+	let rawdata = fs.readFileSync("source/sori-eafc4-export20200803.json");
+	// let rawdata = fs.readFileSync(tarolo);
 	let obj = JSON.parse(rawdata);
+
 	let nev, evad, evadperresz, resz, archiv, ut, mas, jsonban;
 
-	people = sortByKey(obj.data, beproba.miszerint); //sorbarakás abc
+	// console.log(obj);
 
 	for (var i = 0; i < obj.data.length; i++) {
-		if (ValidURL(obj.data[i].Path)) {
-			jsonban = {
-				"Archive": obj.data[i].Archive,
-				"Episode": obj.data[i].Episode,
-				"Episodeyear": obj.data[i].Episodeyear,
-				"Name": obj.data[i].Name,
-				"Other": obj.data[i].Other,
-				"kinka-pc": obj.data[i].Path,
-				"Lenovo": obj.data[i].Path,
-				"Season": obj.data[i].Season
-			}
-		} else {
-			jsonban = {
-				"Archive": obj.data[i].Archive,
-				"Episode": obj.data[i].Episode,
-				"Episodeyear": obj.data[i].Episodeyear,
-				"Name": obj.data[i].Name,
-				"Other": obj.data[i].Other,
-				"kinka-pc": obj.data[i].Path,
-				"Lenovo": "",
-				"Season": obj.data[i].Season
-			}
-		}
-		ref.push(jsonban);
+
+		jsonban = {
+			"Archive": obj.data[i].Archive,
+			"Episode": obj.data[i].Episode,
+			"Episodeyear": obj.data[i].Episodeyear,
+			"Name": obj.data[i].Name,
+			"Other": obj.data[i].Other,
+			"Path": {
+				"kinka-pc": obj.data[i]["kinka-pc"],
+				"Lenovo": obj.data[i].Lenovo
+			},
+			"Season": obj.data[i].Season,
+			"timestamp": Date.now()
+		};
+		fbcollectionimport(jsonban);
+
+
+		// ref.push(jsonban);
 	} //for ege
+
+
 } //egyszerremindet()vege
 // egyszerremindet();
 
@@ -429,7 +368,14 @@ x.addEventListener("keydown", function(e) {
 
 
 
-
+var connectedRef = database.ref(".info/connected");
+connectedRef.on("value", function(snap) {
+	if (snap.val() === true) {
+		uzenetek("Kapcsolódva!");
+	} else {
+		uzenetek("Kapcsolódás");
+	}
+});
 
 
 show(1);

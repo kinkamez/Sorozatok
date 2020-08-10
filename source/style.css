@@ -61,6 +61,7 @@ li a:hover:not(.active) {
 }
 
 .button5 {
+  margin-right: 5px;
   padding: 5px;
   color: #4CAF50;
   border: 1px solid #4CAF50;
@@ -70,6 +71,18 @@ li a:hover:not(.active) {
 .button5:hover {
   color: white;
   background-color: #4CAF50;
+}
+.button3 {
+  margin-right: 5px;
+  padding: 5px;
+  color: #e36c1e;
+  border: 1px solid #e36c1e;
+  background-color: white;
+}
+
+.button3:hover {
+  color: white;
+  background-color: #e36c1e;
 }
 
 .kicsigombik {
@@ -260,7 +273,7 @@ textarea {
 }
 
 .tavos {
-  
+
   margin-right: 15px;
 }
 
