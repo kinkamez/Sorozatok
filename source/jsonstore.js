@@ -20,7 +20,7 @@ function fbnovelo(key) {
 			if (ValidURL(post[computerName]) == false && document.getElementById("beallitas1").checked) {
 				mappatartalom(post[computerName], post.Season, post.Episode + 1, 0, post.Name);
 			} else if (ValidURL(post[computerName]) && document.getElementById("beallitas1").checked) {
-				webnezo(post[computerName], post.Season, post.Episode);
+				webnezo(post[computerName], post.Season, post.Episode + 1);
 			}
 			if (post.Episode == (post.Episodeyear - 1)) {
 				post.Episode = 0;
@@ -107,6 +107,3 @@ document.getElementById("torlogomb").addEventListener("click", function() {
 		document.getElementById("hiddeninput").value = "";
 	}
 });
-
-
-// TODO: kell egy masik db: amiben lesznek a pathok a megfelelő id/kulcs alapján, elkerülni a hardcodeot

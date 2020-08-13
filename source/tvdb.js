@@ -6,158 +6,152 @@ const sleep = require('util').promisify(setTimeout);
 
 let availableTags = [];
 async function tvdbnevkeres(nev) {
-  const show = await tv.find(nev, 'hu');
+	const show = await tv.find(nev, 'hu');
 
-  if (availableTags.includes(show.name) == false && show.name != "") {
-    availableTags.push(show.name);
-  }
+	if (availableTags.includes(show.name) == false && show.name != "") {
+		availableTags.push(show.name);
+	}
 }
-async function egyszer(id){
-  const show = await tv.find(id);
-  let fajlnev = "source/data/" + show.id + ".json";
-    await fs.writeFileSync(fajlnev, JSON.stringify(show, null, 2));
+async function egyszer(id) {
+	const show = await tv.find(id);
+	let fajlnev = "source/data/" + show.id + ".json";
+	await fs.writeFileSync(fajlnev, JSON.stringify(show, null, 2));
 }
 async function tvdbobjekletolt(id) {
-  document.getElementById("loading").innerHTML = '<center><img src="img/294.gif" alt="Töltés"></center>';
-  try {
-    const show = await tv.find(id);
-    let fajlnev = "source/data/" + show.id + ".json";
-    let hatter = 'https://thetvdb.com/banners/' + show.poster;
-    if (show.name != "") {
-      document.getElementById("ujname").value = show.name;
-    }
+	document.getElementById("loading").innerHTML = '<center><img src="img/294.gif" alt="Töltés"></center>';
+	try {
+		const show = await tv.find(id);
+		let fajlnev = "source/data/" + show.id + ".json";
+		let hatter = 'https://thetvdb.com/banners/' + show.poster;
+		if (show.name != "") {
+			document.getElementById("ujname").value = show.name;
+		}
 
-    await downloadIMG(hatter, id); // borito letoltese
+		await downloadIMG(hatter, id); // borito letoltese
 
-    if (show.status === "Ended" && !fs.existsSync(fajlnev)) {
-      await fs.writeFileSync(fajlnev, JSON.stringify(show, null, 2));
-      uzenetek("Adatok letöltve a sorozatról!");
+		if (show.status === "Ended" && !fs.existsSync(fajlnev)) {
+			await fs.writeFileSync(fajlnev, JSON.stringify(show, null, 2));
+			uzenetek("Adatok letöltve a sorozatról!");
 
-    } else if (show.status === "Continuing") {
-      //  console.log("folytatodik");
-      var d = new Date();
-      var n = d.getTime();
+		} else if (show.status === "Continuing") {
+			//  console.log("folytatodik");
+			var d = new Date();
+			var n = d.getTime();
 
-      if (fs.existsSync(fajlnev)) {
-        var stats = fs.statSync(fajlnev);
-        var mtime = stats.ctimeMs;
-        //  console.log("létezik");
-        if (mtime < (n - (1 * 86400000))) {
-          //    console.log(mtime);
-          await fs.writeFileSync(fajlnev, JSON.stringify(show, null, 2));
-          uzenetek("Adatok letöltve a sorozatról!");
-        }
-      } else if (!fs.existsSync(fajlnev)) {
-        console.log("nem létezik");
-        await fs.writeFileSync(fajlnev, JSON.stringify(show, null, 2));
-      }
-    }
-  } catch (err) {
-    uzenetek(err);
-  }
-  finally{
-      document.getElementById("loading").innerHTML = "";
-  }
+			if (fs.existsSync(fajlnev)) {
+				var stats = fs.statSync(fajlnev);
+				var mtime = stats.ctimeMs;
+				//  console.log("létezik");
+				if (mtime < (n - (1 * 86400000))) {
+					//    console.log(mtime);
+					await fs.writeFileSync(fajlnev, JSON.stringify(show, null, 2));
+					uzenetek("Adatok letöltve a sorozatról!");
+				}
+			} else if (!fs.existsSync(fajlnev)) {
+				console.log("nem létezik");
+				await fs.writeFileSync(fajlnev, JSON.stringify(show, null, 2));
+			}
+		}
+	} catch (err) {
+		uzenetek(err);
+	} finally {
+		document.getElementById("loading").innerHTML = "";
+	}
 
 } //tvdbobjektletolt vege
 
 
 async function mennyiresz(id, tvdbreevad, key) {
-  try {
-    let show;
-    document.getElementById("loading").innerHTML = '<center> <img src="img/294.gif" alt="Töltés"></center>';
-    let fajlnev = "source/data/" + id + ".json";
-    if (fs.existsSync(fajlnev)) {
-      let rawdata = await fs.readFileSync(fajlnev);
-      show = JSON.parse(rawdata);
-    } else {
-      show = await tv.find(id);
-    }
-    let mennyireszvan = await show.episodes.filter(obj => obj.season === parseInt(tvdbreevad, 10));
+	try {
+		let show;
+		document.getElementById("loading").innerHTML = '<center> <img src="img/294.gif" alt="Töltés"></center>';
+		let fajlnev = "source/data/" + id + ".json";
+		if (fs.existsSync(fajlnev)) {
+			let rawdata = await fs.readFileSync(fajlnev);
+			show = JSON.parse(rawdata);
+		} else {
+			show = await tv.find(id);
+		}
+		let mennyireszvan = await show.episodes.filter(obj => obj.season === parseInt(tvdbreevad, 10));
 
-    if (key != "1") {
-      let postRef = ref.child(key);
-      postRef.transaction(function(post) {
-        if (post) {
-          post.Episodeyear = mennyireszvan.length;
-          console.log(mennyireszvan.length);
-        }
-        return post;
-      });
-    } else {
-      document.getElementById("ujmas").value = show.id;
-      document.getElementById("ujresz").value = 0;
-      document.getElementById("ujreszevad").value = mennyireszvan.length;
+		if (key != "1") {
+			let postRef = ref.child(key);
+			postRef.transaction(function(post) {
+				if (post) {
+					post.Episodeyear = mennyireszvan.length;
+					console.log(mennyireszvan.length);
+				}
+				return post;
+			});
+		} else {
+			document.getElementById("ujmas").value = show.id;
+			document.getElementById("ujresz").value = 0;
+			document.getElementById("ujreszevad").value = mennyireszvan.length;
 
-    }
+		}
 
 
-  } catch (err) {
-    uzenetek(err);
-  }
+	} catch (err) {
+		uzenetek(err);
+	}
 } //az aktualis evadban mennyi resz van?
 
 async function koviresz() {
-  //// TODO: kitakaritani ezt a szar
-  await new Promise(resolve => setTimeout(resolve, 2000));
-  const fileok = fs.readdir("source/data/", function(err, files) {
-    if (err) {
-      return console.log('Unable to scan directory: ' + err);
-    }
-      for (var i = 0; i < files.length; i++) {
-      let csakid = path.parse(files[i]).name;
-      try {
-         var string =   document.getElementById(csakid + '33').textContent;
-         // var string =   document.querySelector(csakid + '33').textContent;
-         // var string = "S1/E2";
-        var res = string.split("S");
-        var res2 = res[1].split("/");
-        var res3 = res2[1].split("E");
-        let evadszam = parseInt(res2[0], 10);
-        let reszszam = parseInt(res3[1], 10);
+	//// TODO: kitakaritani ezt a szar
+	await new Promise(resolve => setTimeout(resolve, 2000));
+	const fileok = fs.readdir("source/data/", function(err, files) {
+		if (err) {
+			return console.log('Unable to scan directory: ' + err);
+		}
+		for (var i = 0; i < files.length; i++) {
+			let csakid = path.parse(files[i]).name;
+			try {
+				var string = document.getElementById(csakid + '33').textContent;
+				// var string =   document.querySelector(csakid + '33').textContent;
+				// var string = "S1/E2";
+				var res = string.split("S");
+				var res2 = res[1].split("/");
+				var res3 = res2[1].split("E");
+				let evadszam = parseInt(res2[0], 10);
+				let reszszam = parseInt(res3[1], 10);
 
-        let rawdata = fs.readFileSync("source/data/" + files[i]);
-        const show = JSON.parse(rawdata);
+				let rawdata = fs.readFileSync("source/data/" + files[i]);
+				const show = JSON.parse(rawdata);
 
-        const episode = show.episodes.find(ep => ep.number == (reszszam + 1) && ep.season == evadszam);
-// console.log(show.name, evadszam, reszszam + 1);
-        if (episode != undefined && document.getElementById(csakid) != null) {
+				const episode = show.episodes.find(ep => ep.number == (reszszam + 1) && ep.season == evadszam);
+				// console.log(show.name, evadszam, reszszam + 1);
+				if (episode != undefined && document.getElementById(csakid) != null) {
 
-          if (Date.parse(episode.firstaired) + beproba.kesletetes > Date.now()) {
-            document.getElementById(csakid).innerHTML = episode.firstaired;
-            document.getElementById(csakid).style.color = "orange";
-            document.getElementById(show.name).disabled = true;
-            document.getElementById(show.name).title += episode.name;
-            document.getElementById(csakid + "2").title = show.overview;
+					if (Date.parse(episode.firstaired) + beproba.kesletetes > Date.now()) {
+						document.getElementById(csakid).innerHTML = episode.firstaired;
+						document.getElementById(csakid).style.color = "orange";
+						document.getElementById(show.name).disabled = true;
+						document.getElementById(show.name).title += episode.name;
+						document.getElementById(csakid + "2").title = show.overview;
 
-          } else {
-            //tvdbobjekletolt(tvdbkod) ;
-            document.getElementById(csakid + "2").title = show.overview;
-            document.getElementById(csakid).innerHTML = episode.firstaired;
-            document.getElementById(show.name).title += episode.name;
+					} else {
+						//tvdbobjekletolt(tvdbkod) ;
+						document.getElementById(csakid + "2").title = show.overview;
+						document.getElementById(csakid).innerHTML = episode.firstaired;
+						document.getElementById(show.name).title += episode.name;
 
-          }
-        } else {
-          //  document.getElementById(tvdbkod).innerHTML = "majd egyszer";
-          if (show.status == "Ended" && document.getElementById(csakid) != null) {
-            document.getElementById(csakid + "2").title = show.overview;
-            document.getElementById(csakid).innerHTML = "Vége";
-            document.getElementById(csakid).style.color = "red";
-            document.getElementById(show.name).disabled = true;
-          }
-          if (show.status == "Continuing" && document.getElementById(csakid) != null) {
-            document.getElementById(csakid + "2").title = show.overview;
-            document.getElementById(csakid).innerHTML = "Gyártás alatt";
-            document.getElementById(csakid).style.color = "#3e6fbd";
-            document.getElementById(show.name).disabled = true;
-          }
-        }
-      } catch (e) {
-
-      } finally {
-
-      }
-
-    } //for vege
-  });
+					}
+				} else {
+					//  document.getElementById(tvdbkod).innerHTML = "majd egyszer";
+					if (show.status == "Ended" && document.getElementById(csakid) != null) {
+						document.getElementById(csakid + "2").title = show.overview;
+						document.getElementById(csakid).innerHTML = "Vége";
+						document.getElementById(csakid).style.color = "red";
+						document.getElementById(show.name).disabled = true;
+					}
+					if (show.status == "Continuing" && document.getElementById(csakid) != null) {
+						document.getElementById(csakid + "2").title = show.overview;
+						document.getElementById(csakid).innerHTML = "Gyártás alatt";
+						document.getElementById(csakid).style.color = "#3e6fbd";
+						document.getElementById(show.name).disabled = true;
+					}
+				}
+			} catch (e) {}
+		} //for vege
+	});
 }

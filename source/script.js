@@ -247,6 +247,7 @@ function extractHostname(url) {
 }
 
 function webnezo(url, evad, resz) {
+	this.resz = resz + 1;
 	var linke;
 	var valami;
 
@@ -379,4 +380,3 @@ connectedRef.on("value", function(snap) {
 
 
 show(1);
-// TODO: ha nem letezik a boríto és a .json akor töltsd le
