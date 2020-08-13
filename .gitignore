@@ -3,11 +3,8 @@
 
 # But not these files...
 !.gitignore
-!source
-!source/data
-!source/img
+!source/*
 !package.json
 !serviceAccount.json
 !database.rules.json
 !firebase.json
-# etc...
