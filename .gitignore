@@ -4,6 +4,9 @@
 # But not these files...
 !.gitignore
 !source/*
+!source/data/*
+!source/img/*
+!source/img/poster/*
 !package.json
 !serviceAccount.json
 !database.rules.json
