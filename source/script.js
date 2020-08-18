@@ -351,16 +351,10 @@ async function egyszerremindet() {
 } //egyszerremindet()vege
 // egyszerremindet();
 
-
-
-
-
-
-
-
 var x = document.getElementById("ujname");
-x.addEventListener("keydown", function(e) {
+x.addEventListener("mouseout", function(e) {
 	tvdbnevkeres(x.value);
+	console.log(x.value);
 	$('ujname').autocomplete('search', {
 		minLength: 0
 	});
