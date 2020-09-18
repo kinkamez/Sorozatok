@@ -2,6 +2,7 @@
 ###
 Előfeltételek:
 -https://nodejs.org/en/download/
+-https://git-scm.com/downloads  (opcionális lehet .zip és kicsomagolod)
 
 ### Telepítés
 1. Tölts le az operációs rendszeredednek megfelelő .zip fájlt. Csomagold ki és nevezd át Sorozatok névre!
