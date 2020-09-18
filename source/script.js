@@ -79,7 +79,7 @@ async function show(melyiket) {
 			archiv = fireadatok.Archive;
 			mas = fireadatok.Other;
 			evadperresz = fireadatok.Episodeyear;
-
+			// TODO:: tvdbobjekletolt(mas); ez helyett kell egyet irni ami frissiti az régi "adatbázist"
 
 			if (archiv == melyiket) {
 
