@@ -18,15 +18,44 @@ async function egyszer(id) {
 	let fajlnev = "source/data/" + show.id + ".json";
 	await fs.writeFileSync(fajlnev, JSON.stringify(show, null, 2));
 }
+
+async function frissitettadatlapok() {
+	fs.readdir("source/data/", function(err, files) {
+		if (err) {
+			return uzenetek('Unable to scan directory: ' + err);
+		}
+		files.forEach(async function(file) {
+			let fajlnev = "source/data/" + file;
+			let rawdata = await fs.readFileSync(fajlnev);
+			let show = JSON.parse(rawdata);
+
+			var d = new Date();
+			var n = d.getTime();
+			var stats = fs.statSync(fajlnev);
+			var mtime = stats.ctimeMs;
+			if (show.status === "Continuing" && mtime < (n - (1 * 86400000))) {
+				const showweb = await tv.find(path.parse(file).name);
+				await fs.writeFileSync(fajlnev, JSON.stringify(showweb, null, 2));
+				uzenetek("Adatok frissitve a sorozatról!");
+
+			} else {
+				uzenetek("Nincs mit frissíteni!");
+			}
+
+			//console.log(path.parse(file).name);
+		});
+	});
+}
+
 async function tvdbobjekletolt(id) {
 	document.getElementById("loading").innerHTML = '<center><img src="img/294.gif" alt="Töltés"></center>';
 	try {
 		const show = await tv.find(id);
 		let fajlnev = "source/data/" + show.id + ".json";
 		let hatter = 'https://thetvdb.com/banners/' + show.poster;
-		if (show.name != "") {
-			document.getElementById("ujname").value = show.name;
-		}
+		// if (show.name != "") {
+		// 	document.getElementById("ujname").value = show.name;
+		// }
 
 		await downloadIMG(hatter, id); // borito letoltese
 

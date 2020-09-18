@@ -298,23 +298,23 @@ for (var i = 0; i < boxes.length; i++) {
 	}
 }
 
-function myF() {
-	document.getElementById("myDropdown").classList.toggle("show");
-}
+// function myF() {
+// 	document.getElementById("myDropdown").classList.toggle("show");
+// }
+//
+// window.onclick = function(e) {
+// 	if (!e.target.matches('.dropbtn')) {
+// 		var myDropdown = document.getElementById("myDropdown");
+// 		if (myDropdown.classList.contains('show')) {
+// 			myDropdown.classList.remove('show');
+// 		}
+// 	}
+// }
 
 function backupfunk() {
 
 	// TODO: firebase to json
 
-}
-
-window.onclick = function(e) {
-	if (!e.target.matches('.dropbtn')) {
-		var myDropdown = document.getElementById("myDropdown");
-		if (myDropdown.classList.contains('show')) {
-			myDropdown.classList.remove('show');
-		}
-	}
 }
 
 async function egyszerremindet() {
